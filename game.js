@@ -6,12 +6,19 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    var choice = prompt("Choose Rock, Paper, Scissors:"); //prompt player to type
-    firstLetter = (choice.slice(0,1)).toUpperCase(); //always uppercase first letter
-    otherLetters = (choice.slice(1)).toLowerCase(); //always lowercase rest of letters
-    cleanChoice = firstLetter + otherLetters; //return clean choice to pass on to game
-    return cleanChoice;
+    while (true) {
+        var choice = prompt("Choose Rock, Paper, Scissors:"); //prompt player to type
+        firstLetter = (choice.slice(0,1)).toUpperCase(); //always uppercase first letter
+        otherLetters = (choice.slice(1)).toLowerCase(); //always lowercase rest of letters
+        cleanChoice = firstLetter + otherLetters; //return clean choice to pass on to game
+        if (cleanChoice === "Rock" || cleanChoice === "Paper" || cleanChoice === "Scissors") {
+            break;
+        } else {
+            console.log("Please enter either: Rock, Paper, or Scissors");
+        }
     }
+    return cleanChoice;
+}
     
 
 
@@ -78,4 +85,4 @@ function game() {
 
 
 
-//console.log(playRound(getPlayerChoice(), getComputerChoice()));
+console.log(playRound(getPlayerChoice(), getComputerChoice()));
