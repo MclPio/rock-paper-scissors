@@ -20,8 +20,6 @@ function getPlayerChoice() {
     return cleanChoice;
 }
     
-
-
 function playRound(playerSelection, computerSelection) {
     let result; //define result
     
@@ -76,13 +74,35 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+    //create variable to store computer and player scores
     //call playRound
-    //for 5 rounds
+    //check text result from play rounds to see if play won or lost
     //if player wins add 1 point to their score
     //if computer wins add 1 point to their score
+    let playerScore = 0;
+    let computerScore = 0;
+    let textResult;
+    for (let i = 0; i < 5; i++) {
+        textResult = playRound(getPlayerChoice(), getComputerChoice())
+        console.log(textResult);
+        if (textResult.includes("Win")) {
+            playerScore ++;
+        } else if (textResult.includes("Lose")) {
+            computerScore ++;
+        } else if (textResult.includes("Tie")) {
+            i--;
+        }
+        //if text result contains win. add 1 to player score
+        //else if text result contains lose add 1 to computer score
+        //else if tied do not change score i--?
+        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
+    }
+    //if player scored higher win. if computer lose.
+    if (playerScore > computerScore) {
+        console.log("You win the match!");
+    } else {
+        console.log("You lose the match!")
+    }
 }
 
-
-
-
-console.log(playRound(getPlayerChoice(), getComputerChoice()));
+game();
