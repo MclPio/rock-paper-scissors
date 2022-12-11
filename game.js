@@ -82,7 +82,7 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     let textResult;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         textResult = playRound(getPlayerChoice(), getComputerChoice())
         console.log(textResult);
         if (textResult.includes("Win")) {
@@ -92,6 +92,9 @@ function game() {
         } else if (textResult.includes("Tie")) {
             i--;
         }
+        if (playerScore === 5 || computerScore === 5) {
+            break;
+        }
         //if text result contains win. add 1 to player score
         //else if text result contains lose add 1 to computer score
         //else if tied do not change score i--?
@@ -99,10 +102,15 @@ function game() {
     }
     //if player scored higher win. if computer lose.
     if (playerScore > computerScore) {
+        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
         console.log("You win the match!");
     } else {
+        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
         console.log("You lose the match!")
     }
 }
 
 game();
+//if player score under 5 continue loop until it reaches 5 then they win
+//if computer score under 5 continue loop until it reaches 5 and they win
+//if either player or computer win break out of loop and announce results
