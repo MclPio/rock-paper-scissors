@@ -7,14 +7,13 @@ let playerScore = 0;
 let computerScore = 0;
 let resetButton = document.createElement('button');
 results.textContent = 'Choose rock, paper or scissors:'
-resetButton.textContent = 'restart';
+resetButton.textContent = 'RESTART';
 document.body.appendChild(resetButton);
 resetButton.addEventListener('click', () => {
     playerScore = 0;
     computerScore = 0;
     updateScore();
 });
-
 
 function updateScore () {
     ending.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
