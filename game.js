@@ -2,28 +2,51 @@ let rock = document.querySelector('#rock');
 let paper = document.querySelector('#paper');
 let scissors = document.querySelector('#scissors');
 let results = document.querySelector('#results');
-let score = document.querySelector('#score');
-results.textContent = 'Choose rock, paper or scissors:'
+let ending = document.querySelector('#ending');
 let playerScore = 0;
 let computerScore = 0;
+let resetButton = document.createElement('button');
+results.textContent = 'Choose rock, paper or scissors:'
+resetButton.textContent = 'restart';
+document.body.appendChild(resetButton);
+resetButton.addEventListener('click', () => {
+    playerScore = 0;
+    computerScore = 0;
+    updateScore();
+});
+
 
 function updateScore () {
-    score.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    ending.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    if (playerScore == 5 || computerScore == 5) {
+        if (playerScore > computerScore) {
+            ending.textContent = `Player: ${playerScore} Computer: ${computerScore} You win the match!`;
+            
+        } else {
+            ending.textContent = `Player: ${playerScore} Computer: ${computerScore} You lose the match!`; 
+    }
+}
 }
 
 rock.addEventListener('click', () => {
-    playRound(rock.getAttribute('id'), getComputerChoice());
-
+    if (playerScore == 5 || computerScore == 5) {
+    } else {
+        playRound(rock.getAttribute('id'), getComputerChoice());
+    }
 });
 
 paper.addEventListener('click', () => {
-    playRound(paper.getAttribute('id'), getComputerChoice());
-
+    if (playerScore == 5 || computerScore == 5) {
+    } else {
+        playRound(paper.getAttribute('id'), getComputerChoice());
+    }
 })
 
 scissors.addEventListener('click', () => {
+    if (playerScore == 5 || computerScore == 5) {
+    } else {
     playRound(scissors.getAttribute('id'), getComputerChoice());
-
+    }
 });
 
 function getComputerChoice() {
@@ -90,43 +113,6 @@ function playRound(playerSelection, computerSelection) {
     return textResult;
     //string result: taken from if statement. You Win! rock Beats scissors. 
     //get player variable get computer variable print result from if statement.
-}
-
-function game() {
-    //create variable to store computer and player scores
-    //call playRound
-    //check text result from play rounds to see if play won or lost
-    //if player wins add 1 point to their score
-    //if computer wins add 1 point to their score
-    let playerScore = 0;
-    let computerScore = 0;
-    let textResult;
-    for (let i = 0; i < 10; i++) {
-        textResult = playRound(getPlayerChoice(), getComputerChoice())
-        console.log(textResult);
-        if (textResult.includes("Win")) {
-            playerScore ++;
-        } else if (textResult.includes("Lose")) {
-            computerScore ++;
-        } else if (textResult.includes("Tie")) {
-            i--;
-        }
-        if (playerScore === 5 || computerScore === 5) {
-            break;
-        }
-        //if text result contains win. add 1 to player score
-        //else if text result contains lose add 1 to computer score
-        //else if tied do not change score i--?
-        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
-    }
-    //if player scored higher win. if computer lose.
-    if (playerScore > computerScore) {
-        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
-        console.log("You win the match!");
-    } else {
-        console.log(`Player Score: ${playerScore} | Computer Score: ${computerScore}`);
-        console.log("You lose the match!")
-    }
 }
 
 //if player score under 5 continue loop until it reaches 5 then they win
